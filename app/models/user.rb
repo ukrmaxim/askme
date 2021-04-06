@@ -1,14 +1,20 @@
 require 'openssl'
 
-class User < ApplicationRecord
+class User < ActiveRecord::Base
+
+  ITERATIONS = 20_000
+  DIGEST = OpenSSL::Digest.new('SHA256')
 
   has_many :questions
   attr_accessor :password
 
-  validates :email, :username, presence: true
+  validates :username, presence: true, length: { maximum: 40 }, format: { with: /\A[a-zA-Z0-9_]+\z/ }
+  validates :email, presence: true, format: { with: /\A[\w.]+@[a-z\d]+\.[a-zа-я]+\z/ }
   validates :email, :username, uniqueness: true
   validates :password, presence: true, on: :create
   validates_confirmation_of :password
+
+  before_save :encrypt_password
 
   def encrypt_password
     if password.present?
