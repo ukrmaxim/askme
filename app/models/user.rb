@@ -14,7 +14,13 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   validates_confirmation_of :password
 
-  before_save :encrypt_password
+  before_validation :normalize_username
+  before_save :encrypt_password, :normalize_username
+
+  def normalize_username
+    self.username = username.downcase
+  end
+
 
   def encrypt_password
     if password.present?
