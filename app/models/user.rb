@@ -5,7 +5,6 @@ class User < ApplicationRecord
   ITERATIONS = 20_000
   DIGEST = OpenSSL::Digest.new('SHA256')
 
-  has_many :questions, dependent: :destroy
   attr_accessor :password
 
   validates :username, presence: true, length: { maximum: 40 }, format: { with: /\A[a-zA-Z0-9_]+\z/ }
@@ -14,13 +13,38 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
   validates_confirmation_of :password
 
+  has_many :questions, dependent: :destroy
+
   before_validation :normalize_username
   before_save :encrypt_password, :normalize_username
 
-  def normalize_username
-    self.username = username.downcase
+  # Служебный метод, преобразующий бинарную строку в шестнадцатиричный формат, для удобства хранения.
+  def self.hash_to_string(password_hash)
+    password_hash.unpack('H*')[0]
   end
 
+  # Основной метод для аутентификации юзера (логина). Проверяет email и пароль,
+  # если пользователь с такой комбинацией есть в базе, возвращает этого пользователя. Если нет — возвращает nil.
+  def self.authenticate(email, password)
+    # Сперва находим кандидата по email
+    user = find_by(email: email)
+
+    # Если пользователь не найден, возвращает nil
+    return nil unless user.present?
+
+    # Формируем хэш пароля из того, что передали в метод
+    hashed_password = User.hash_to_string(
+      OpenSSL::PKCS5.pbkdf2_hmac(
+        password, user.password_salt, ITERATIONS, DIGEST.length, DIGEST
+      )
+    )
+
+    return user if user.password_hash == hashed_password
+
+    nil
+  end
+
+  private
 
   def encrypt_password
     if password.present?
@@ -44,35 +68,7 @@ class User < ApplicationRecord
     end
   end
 
-  # Служебный метод, преобразующий бинарную строку в шестнадцатиричный формат,
-  # для удобства хранения.
-  def self.hash_to_string(password_hash)
-    password_hash.unpack('H*')[0]
-  end
-
-  # Основной метод для аутентификации юзера (логина). Проверяет email и пароль,
-  # если пользователь с такой комбинацией есть в базе, возвращает этого
-  # пользователя. Если нет — возвращает nil.
-  def self.authenticate(email, password)
-    # Сперва находим кандидата по email
-    user = find_by(email: email)
-
-    # Если пользователь не найден, возвращает nil
-    return nil unless user.present?
-
-    # Формируем хэш пароля из того, что передали в метод
-    hashed_password = User.hash_to_string(
-      OpenSSL::PKCS5.pbkdf2_hmac(
-        password, user.password_salt, ITERATIONS, DIGEST.length, DIGEST
-      )
-    )
-
-    # Обратите внимание: сравнивается password_hash, а оригинальный пароль так
-    # никогда и не сохраняется нигде. Если пароли совпали, возвращаем
-    # пользователя.
-    return user if user.password_hash == hashed_password
-
-    # Иначе, возвращаем nil
-    nil
+  def normalize_username
+    username&.downcase!
   end
 end
