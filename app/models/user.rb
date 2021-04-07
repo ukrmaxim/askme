@@ -1,11 +1,11 @@
 require 'openssl'
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 
   ITERATIONS = 20_000
   DIGEST = OpenSSL::Digest.new('SHA256')
 
-  has_many :questions
+  has_many :questions, dependent: :destroy
   attr_accessor :password
 
   validates :username, presence: true, length: { maximum: 40 }, format: { with: /\A[a-zA-Z0-9_]+\z/ }
