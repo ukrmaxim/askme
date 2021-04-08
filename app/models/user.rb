@@ -7,16 +7,15 @@ class User < ApplicationRecord
 
   attr_accessor :password
 
-  validates :username, presence: true, length: { maximum: 40 }, format: { with: USERNAME_REGEXP }
-  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :email, :username, uniqueness: true
+  has_many :questions, dependent: :destroy
+
+  validates :username, presence: true, uniqueness: true, length: { maximum: 40 }, format: { with: USERNAME_REGEXP }
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, presence: true, confirmation: true
   validates :password_confirmation, presence: true
 
-  has_many :questions, dependent: :destroy
-
-  before_validation :normalize_username
-  before_save :encrypt_password, :normalize_username
+  before_validation :normalize_username, :normalize_email
+  before_save :encrypt_password
 
   # Служебный метод, преобразующий бинарную строку в шестнадцатиричный формат, для удобства хранения.
   def self.hash_to_string(password_hash)
@@ -68,7 +67,12 @@ class User < ApplicationRecord
     end
   end
 
+  def normalize_email
+    email&.downcase!
+  end
+
   def normalize_username
     username&.downcase!
   end
+
 end
