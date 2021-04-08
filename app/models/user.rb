@@ -4,13 +4,13 @@ class User < ApplicationRecord
   ITERATIONS = 20_000
   DIGEST = OpenSSL::Digest.new('SHA256')
   USERNAME_REGEXP = /\A\w+\z/
-
+  USEREMAIL_REGEXP = /\A[\w.]+@[a-zа-я\d]+\.[a-zа-я]+\z/
   attr_accessor :password
 
   has_many :questions, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true, length: { maximum: 40 }, format: { with: USERNAME_REGEXP }
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, presence: true, uniqueness: true, format: { with: USEREMAIL_REGEXP }
   validates :password, presence: true, confirmation: true
   validates :password_confirmation, presence: true
 
@@ -74,5 +74,4 @@ class User < ApplicationRecord
   def normalize_username
     username&.downcase!
   end
-
 end
