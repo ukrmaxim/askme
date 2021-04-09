@@ -31,8 +31,8 @@ class UsersController < ApplicationController
 
     # Болванка вопросов для пользователя
     @questions = [
-      Question.new(text: 'Как дела?', created_at: Date.parse('27.03.2016')),
-      Question.new(text: 'В чем смысл жизни?', created_at: Date.parse('27.03.2016'))
+      Question.new(text: 'Как дела?', created_at: Date.parse('07.04.2021')),
+      Question.new(text: 'В чем смысл жизни?', created_at: Date.parse('08.04.2021'))
     ]
 
     # Болванка для нового вопроса

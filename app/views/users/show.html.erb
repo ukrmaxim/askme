@@ -1,7 +1,7 @@
 <%# В шаблоне show мы пишем html-код для вывода внутреннго содержимого %>
 <%# страницы пользователя, которая будет показана по адресу /users/1 %>
 
-<%# Блок с информацией о пользователей %>
+<%# Блок с информацией о пользователе %>
 <div class="user-header text-center">
   <h1 class="title-medium">
     <%# Выводим имя пользователя %>
@@ -24,6 +24,15 @@
     <%= link_to "Спроси меня", '', class: 'button button-light', id: 'ask-button' %>
   </div>
 </div>
+
+<div class="question">
+  <div class="question-content">
+    <div class="question-text text-lead">
+      Всего задано: <%= @questions.count %> <%= decline(@questions.count, 'вопрос', 'вопроса', 'вопросов') %>
+    </div>
+  </div>
+</div>
+
 
 <%# Блок с формой для задавания пользователю вопроса %>
 <div class="user-question-form-div column-1-4 column-1-4-right" id='ask-form'>

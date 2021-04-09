@@ -5,6 +5,7 @@ class User < ApplicationRecord
   DIGEST = OpenSSL::Digest.new('SHA256')
   USERNAME_REGEXP = /\A\w+\z/
   USEREMAIL_REGEXP = /\A[\w.]+@[a-zа-я\d]+\.[a-zа-я]+\z/
+
   attr_accessor :password
 
   has_many :questions, dependent: :destroy
