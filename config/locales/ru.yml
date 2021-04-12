@@ -1,0 +1,13 @@
+ru:
+  number_of_questions:
+    zero: '%{count} вопросов'
+    one: '%{count} вопрос'
+    few: '%{count} вопроса'
+    many: '%{count} вопросов'
+    other: '%{count} вопросы'
+
+  given:
+    one: 'задан'
+    few: 'задано'
+    many: 'задано'
+    other: 'задано'

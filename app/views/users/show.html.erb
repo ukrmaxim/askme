@@ -25,14 +25,18 @@
   </div>
 </div>
 
+<%# Блок с количеством вопросов общее/отвеченные/не отвеченные %>
 <div class="question">
   <div class="question-content">
     <div class="question-text text-lead">
-      Всего задано: <%= @questions.count %> <%= decline(@questions.count, 'вопрос', 'вопроса', 'вопросов') %>
+
+      <% I18n.locale = :ru %>
+      Всего <%= t(:given, count: @questions_count)%>: <%= t(:number_of_questions, count: @questions_count) %>
+      <p> Отвечено на: <%= t(:number_of_questions, count: @answered_count) %> </p>
+      <p> Не отвечено на: <%= t(:number_of_questions, count: @unanswered_count) %> </p>
     </div>
   </div>
 </div>
-
 
 <%# Блок с формой для задавания пользователю вопроса %>
 <div class="user-question-form-div column-1-4 column-1-4-right" id='ask-form'>

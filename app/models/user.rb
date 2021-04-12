@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: true
   validates :password_confirmation, presence: true
 
-  before_validation :normalize_username, :normalize_email
+  before_validation :normalize_letters
   before_save :encrypt_password
 
   # Служебный метод, преобразующий бинарную строку в шестнадцатиричный формат, для удобства хранения.
@@ -68,11 +68,8 @@ class User < ApplicationRecord
     end
   end
 
-  def normalize_email
+  def normalize_letters
     email&.downcase!
-  end
-
-  def normalize_username
     username&.downcase!
   end
 end
