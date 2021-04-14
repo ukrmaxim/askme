@@ -11,3 +11,13 @@ ru:
     few: 'задано'
     many: 'задано'
     other: 'задано'
+
+  activerecord:
+    attributes:
+      user:
+        avatar_url: URL вашей аватарки
+        email: Логин (e-mail)
+        name: Имя
+        password: Пароль
+        password_confirmation: Пароль ещё раз
+        username: Никнейм

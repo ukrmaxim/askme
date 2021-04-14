@@ -3,6 +3,6 @@ class Question < ApplicationRecord
 
   validates :text, presence: true, length: { maximum: 255 }
 
-  scope :answered, -> { where(answer: nil) }
-  scope :unanswered, -> { where.not(answer: nil) }
+  scope :answered, -> { where.not(answer: nil) }
+  scope :unanswered, -> { where(answer: nil) }
 end

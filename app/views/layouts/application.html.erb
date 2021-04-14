@@ -3,6 +3,7 @@
 <head>
   <title>AskMe</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -23,14 +24,12 @@
       <%# Если есть текущий юзер (значит он залогинен) %>
       <% if current_user %>
         <%# Даем ссылки на его профиль и на логаут %>
-        <%= link_to "@#{current_user.username}", user_path(current_user) %> |
-        <%= link_to 'Выйти', log_out_path %>
+        <%= link_to "@#{current_user.username}", user_path(current_user), class: 'button button-light button-small' %> |
+        <%= link_to 'Выйти', log_out_path, class: 'button button-light button-small' %>
       <% else %>
         <%# Если нету — ссылки на регистрацию и логин %>
-        <%= link_to 'Зарегистрироваться', sign_up_path,
-                    class: 'button button-light button-small' %>
-        <%= link_to 'Войти', log_in_path,
-                    class: 'button button-light button-small' %>
+        <%= link_to 'Зарегистрироваться', sign_up_path, class: 'button button-light button-small' %>
+        <%= link_to 'Войти', log_in_path, class: 'button button-light button-small' %>
       <% end %>
     </div>
   </div>

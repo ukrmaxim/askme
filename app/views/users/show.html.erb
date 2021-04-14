@@ -1,5 +1,5 @@
 <%# В шаблоне show мы пишем html-код для вывода внутреннго содержимого %>
-<%# страницы пользователя, которая будет показана по адресу /users/1 %>
+<%# страницы пользователя, которая будет показана по адресу /users/id %>
 
 <%# Блок с информацией о пользователе %>
 <div class="user-header text-center">
@@ -33,8 +33,6 @@
 <div class="question">
   <div class="question-content">
     <div class="question-text text-lead">
-
-      <% I18n.locale = :ru %>
       Всего <%= t(:given, count: @questions_count)%>: <%= t(:number_of_questions, count: @questions_count) %>
       <p> Отвечено на: <%= t(:number_of_questions, count: @answered_count) %> </p>
       <p> Не отвечено на: <%= t(:number_of_questions, count: @unanswered_count) %> </p>
