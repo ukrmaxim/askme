@@ -1,33 +1,55 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <title>AskMe</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>AskMe</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<body>
 
-  <div class="header">
-    <div class="container">
-      <div class="header-logo">
-        <%# Ссылка на главную страницу сайта (root_path) %>
-        <h1 class="header-title"><%= link_to "AskMe", root_path %></h1>
+<div class="header">
+  <div class="container">
+    <div class="header-logo">
+      <%# Ссылка на главную страницу сайта (root_path) %>
+      <h1 class="header-title"><%= link_to "AskMe", root_path %></h1>
+    </div>
+    <%# Выводим в хэдере информацию для логина/авторизации/регистрации %>
+    <div class="header-nav">
+      <%# Если есть текущий юзер (значит он залогинен) %>
+      <% if current_user %>
+        <%# Даем ссылки на его профиль и на логаут %>
+        <%= link_to "@#{current_user.username}", user_path(current_user) %> |
+        <%= link_to 'Выйти', log_out_path %>
+      <% else %>
+        <%# Если нету — ссылки на регистрацию и логин %>
+        <%= link_to 'Зарегистрироваться', sign_up_path,
+                    class: 'button button-light button-small' %>
+        <%= link_to 'Войти', log_in_path,
+                    class: 'button button-light button-small' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container">
+    <% if flash.any? %>
+      <div class="content-wrapper buffer-both">
+        <% flash.each do |name, message| %>
+          <%= content_tag :div, message, class: "flash-#{name}" %>
+        <% end %>
       </div>
-    </div>
+    <% end %>
+    <%# Вместо волшебной конструкции yield рельсы подставят то, что срендерит %>
+    <%# шаблон для нужной нам страницы, например, users/show %>
+    <%= yield %>
   </div>
+</div>
 
-  <div class="content">
-    <div class="container">
-      <%# Вместо волшебной конструкции yield рельсы подставят то, что срендерит %>
-      <%# шаблон для нужной нам страницы, например, users/show %>
-      <%= yield %>
-    </div>
-  </div>
-
-  </body>
+</body>
 </html>
