@@ -16,11 +16,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Centralization of locale data collection for Ruby on Rails
 gem 'rails-i18n', '~> 6.0.0' # For 6.0.0 or higher
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry-rails'
-end
+gem 'uglifier'
 
 group :development do
   # Use sqlite3 as the database for Active Record
@@ -31,4 +27,12 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
+end
+
+group :development, :test do
+  gem 'pry-rails'
+end
+
+group :production do
+  gem 'pg'
 end
