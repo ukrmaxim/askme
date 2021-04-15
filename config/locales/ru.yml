@@ -16,6 +16,7 @@ ru:
     attributes:
       user:
         avatar_url: URL вашей аватарки
+        background: Цвет фона
         email: Логин (e-mail)
         name: Имя
         password: Пароль

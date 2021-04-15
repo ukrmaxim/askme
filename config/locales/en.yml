@@ -13,6 +13,7 @@ en:
     attributes:
       user:
         avatar_url: Avatar_URL
+        background: Background color
         email: Login (e-mail)
         name: Name
         password: Password

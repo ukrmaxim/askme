@@ -2,7 +2,7 @@
 <%# страницы пользователя, которая будет показана по адресу /users/id %>
 
 <%# Блок с информацией о пользователе %>
-<div class="user-header text-center">
+<div class="user-header text-center" style="background-color:<%= @user.background %>">
   <h1 class="title-medium">
     <%# Выводим имя пользователя %>
     <%= @user.name %>
