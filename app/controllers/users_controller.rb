@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
-  before_action :load_user, except: [:index, :create, :new]
-  before_action :authorize_user, except: [:index, :new, :create, :show]
-
-  def edit
-  end
+  before_action :load_user, except: [:index, :create, :new, :destroy]
+  before_action :authorize_user, except: [:index, :new, :create, :show, :destroy]
 
   def create
     # Если пользователь уже авторизован, ему не нужна новая учетная запись, отправляем его на главную с сообщением.
@@ -21,6 +18,15 @@ class UsersController < ApplicationController
       # содержатся ошибки валидации, которые выведет шаблон формы.
       render 'new'
     end
+  end
+
+  def destroy
+    current_user.destroy
+    session.destroy
+    redirect_to root_url, alert: 'Пользователь удален!'
+  end
+
+  def edit
   end
 
   def index

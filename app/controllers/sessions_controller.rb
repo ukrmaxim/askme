@@ -1,7 +1,4 @@
 class SessionsController < ApplicationController
-  def new
-  end
-
   def create
     user = User.authenticate(params[:email], params[:password])
 
@@ -20,5 +17,8 @@ class SessionsController < ApplicationController
 
     # Редиректим пользователя на главную с сообщением
     redirect_to root_url, notice: 'Возвращайтесь скорее!'
+  end
+
+  def new
   end
 end

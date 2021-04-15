@@ -2,9 +2,6 @@ class QuestionsController < ApplicationController
   before_action :load_question, only: [:destroy, :edit, :update]
   before_action :authorize_user, except: [:create]
 
-  def edit
-  end
-
   def create
     @question = Question.new(question_params)
 
@@ -15,18 +12,21 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    user = @question.user
+    @question.destroy
+    redirect_to user_path(user), notice: 'Вопрос удален.'
+  end
+
+  def edit
+  end
+
   def update
     if @question.update(question_params)
       redirect_to user_path(@question.user), notice: 'Вопрос сохранен'
     else
       render :edit
     end
-  end
-
-  def destroy
-    user = @question.user
-    @question.destroy
-    redirect_to user_path(user), notice: 'Вопрос удален.'
   end
 
   private
