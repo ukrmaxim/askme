@@ -34,7 +34,7 @@
   <div class="question-content">
     <div class="question-text text-lead">
       <div class="column-1-3">
-        <h1 class="title-small"><%= t(:given, count: @questions_count)%></h1>
+        <h1 class="title-small"><%= t(:given, count: @questions_count) %></h1>
         <p><%= t(:number_of_questions, count: @questions_count) %></p>
       </div>
       <div class="column-1-3">
@@ -86,6 +86,14 @@
         <%# Мы рисуем здесь для кажого вопроса в списке вопросов фрагмент %>
         <%# (паршал), передавая в него текущий вопрос. Это очень похоже на %>
         <%# вызов метода в ruby %>
+        <div class="question-content">
+          <%# Автор вопроса %>
+          <% if question.author_id.present? %>
+            вопрос от: <%= link_to "@#{question.author.username}", user_path(question.author_id) %>
+          <% else %>
+            вопрос от: @anonymous
+          <% end %>
+        </div>
         <%= render partial: 'questions/question', object: question %>
       <% end %>
     </div>
