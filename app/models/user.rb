@@ -12,8 +12,8 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true, length: { maximum: 40 }, format: { with: USERNAME_REGEXP }
   validates :email, presence: true, uniqueness: true, format: { with: USEREMAIL_REGEXP }
-  validates :password, presence: true, confirmation: true
-  validates :password_confirmation, presence: true
+  validates :password, confirmation: true
+  validates :password_confirmation, presence: true, on: :create
 
   before_validation :normalize_letters
   before_save :encrypt_password
