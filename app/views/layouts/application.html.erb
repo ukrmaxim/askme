@@ -23,7 +23,7 @@
     <div class="header-nav">
       <%# Если есть текущий юзер (значит он залогинен) %>
       <% if current_user %>
-        <%# Даем ссылки на его профиль и на логаут %>
+        <%# Даем ссылки на его профиль, на log out и на удаление профиля %>
         <%= link_to "@#{current_user.username}", user_path(current_user), class: 'button button-light button-small' %> |
         <%= link_to 'Выйти', log_out_path, class: 'button button-light button-small' %>
         <%= link_to 'Удалить профиль', delete_path, class: 'button button-light button-small' %>
