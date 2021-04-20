@@ -2,6 +2,18 @@ class UsersController < ApplicationController
   before_action :load_user, except: [:index, :create, :new, :destroy]
   before_action :authorize_user, except: [:index, :new, :create, :show, :destroy]
 
+  def index
+    @users = User.all
+  end
+
+  def new
+    # Если пользователь уже авторизован, ему не нужна новая учетная запись,
+    # отправляем его на главную с сообщением.
+    redirect_to root_path, alert: 'Вы уже авторизованы' if current_user.present?
+
+    @user = User.new
+  end
+
   def create
     # Если пользователь уже авторизован, ему не нужна новая учетная запись, отправляем его на главную с сообщением.
     redirect_to root_path, alert: 'Вы уже авторизованы' if current_user.present?
@@ -20,27 +32,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    current_user.destroy
-    session.destroy
-    redirect_to root_path, alert: 'Пользователь удален!'
-  end
-
-  def edit
-  end
-
-  def index
-    @users = User.all
-  end
-
-  def new
-    # Если пользователь уже авторизован, ему не нужна новая учетная запись,
-    # отправляем его на главную с сообщением.
-    redirect_to root_path, alert: 'Вы уже авторизованы' if current_user.present?
-
-    @user = User.new
-  end
-
   def show
     @questions = @user.questions.order(created_at: :desc)
     @new_question = @user.questions.build
@@ -50,9 +41,12 @@ class UsersController < ApplicationController
     @answered_count = @questions.answered.count
   end
 
+  def edit
+  end
+
   def update
     if @user.update(user_params)
-      # Если удалось, отправляем пользователя на страницу профиля с сообщение, что данные профиля обновлены.
+      # Если удалось, отправляем пользователя на страницу профиля с сообщением, что данные профиля обновлены.
       redirect_to user_path(@user), notice: 'Данные профиля обновлены!'
     else
       # Если не получилось, как и в create рисуем страницу редактирования
@@ -60,6 +54,12 @@ class UsersController < ApplicationController
       # информацию об ошибках валидации, которые отобразит форма.
       render 'edit'
     end
+  end
+
+  def destroy
+    current_user.destroy
+    session.destroy
+    redirect_to root_path, alert: 'Пользователь удален!'
   end
 end
 

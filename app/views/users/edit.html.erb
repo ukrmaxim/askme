@@ -44,7 +44,7 @@
 
       <div class="form-field">
         <%= f.label :background, class: 'form-label' %>
-        <%= f.color_field :background, class: 'form-text-field', size: "20x10" %>
+        <%= f.color_field :background %>
       </div>
 
       <div class="buffer-top-large buffer-bottom">
@@ -62,7 +62,11 @@
       </div>
 
       <div class="form-action buffer-top">
-        <%= f.submit 'Сохранить', class: 'button button-dark button-small' %>
+        <%= f.submit 'Сохранить профиль', class: 'button button-dark button-small' %>
+        <%= link_to 'Удалить профиль', user_path(@user),
+                    class: 'button button-red button-small',
+                    method: :delete, data: {
+            confirm: 'Точно удалить профиль?' } %>
       </div>
     <% end %>
   </div>

@@ -88,10 +88,10 @@
         <%# вызов метода в ruby %>
         <div class="question-content">
           <%# Автор вопроса %>
-          <% if question.author_id.present? %>
-            вопрос от: <%= link_to "@#{question.author.username}", user_path(question.author_id) %>
-          <% else %>
+          <% if question.author.nil? %>
             вопрос от: @anonymous
+          <% else %>
+            вопрос от: <%= link_to "@#{question.author.username}", user_path(question.author_id) %>
           <% end %>
         </div>
         <%= render partial: 'questions/question', object: question %>

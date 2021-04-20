@@ -26,7 +26,7 @@
   <%# и отвечать на него %>
   <% if question.user == current_user %>
     <%# Определяем какая будет иконка, если у вопроса нет ответа, то иконка %>
-    <%# овтета на письмо, иначе — карандашик %>
+    <%# ответа на письмо, иначе — карандашик %>
     <% edit_icon = question.answer.blank? ? 'reply' : 'pencil' %>
 
     <div class="question-actions">
