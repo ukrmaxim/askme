@@ -5,6 +5,8 @@ class User < ApplicationRecord
   DIGEST = OpenSSL::Digest.new('SHA256')
   USERNAME_REGEXP = /\A\w+\z/
   USEREMAIL_REGEXP = /\A[\w.]+@[a-zа-я\d]+\.[a-zа-я]+\z/
+  PROFILEBG_REGEXP = /\A#\h{6}\z/
+  AVATARURL_REGEXP = /\A(http|https|www)+:\/\/[a-zа-я\d]+\.[a-zа-я]+\z/
 
   attr_accessor :password
 
@@ -14,6 +16,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: USEREMAIL_REGEXP }
   validates :password, confirmation: true
   validates :password_confirmation, presence: true, on: :create
+  validates :background, format: {with: PROFILEBG_REGEXP}
+  validates :avatar_url, allow_blank: true, format: {with: AVATARURL_REGEXP}
 
   before_validation :normalize_letters
   before_save :encrypt_password
