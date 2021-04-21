@@ -79,23 +79,13 @@
 <%# Блок со списком вопросов к пользователю %>
 <div class="column-3-4">
   <div class="user-questions buffer-both">
-    <div class="questions-list">
-      <%# Обратите внимание, как мы делаем цикл по всем вопросам, точно %>
-      <%# также, как мы делали циклы в ruby %>
-      <% @questions.each do |question| %>
-        <%# Мы рисуем здесь для кажого вопроса в списке вопросов фрагмент %>
-        <%# (паршал), передавая в него текущий вопрос. Это очень похоже на %>
-        <%# вызов метода в ruby %>
-        <div class="question-content">
-          <%# Автор вопроса %>
-          <% if question.author.nil? %>
-            вопрос от: @anonymous
-          <% else %>
-            вопрос от: <%= link_to "@#{question.author.username}", user_path(question.author_id) %>
-          <% end %>
-        </div>
-        <%= render partial: 'questions/question', object: question %>
-      <% end %>
-    </div>
+    <%# Обратите внимание, как мы делаем цикл по всем вопросам, точно %>
+    <%# также, как мы делали циклы в ruby %>
+    <% @questions.each do |question| %>
+      <%# Мы рисуем здесь для кажого вопроса в списке вопросов фрагмент %>
+      <%# (паршал), передавая в него текущий вопрос. Это очень похоже на %>
+      <%# вызов метода в ruby %>
+      <%= render partial: 'questions/question', object: question %>
+    <% end %>
   </div>
 </div>
