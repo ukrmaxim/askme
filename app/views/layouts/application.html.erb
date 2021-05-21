@@ -25,11 +25,11 @@
       <% if current_user %>
         <%# Даем ссылки на его профиль, на log out и на удаление профиля %>
         <%= link_to "@#{current_user.username}", user_path(current_user), class: 'button button-light button-small' %> |
-        <%= link_to 'Выйти', log_out_path, class: 'button button-light button-small' %>
+        <%= link_to 'Выйти', session_path, data: {method: :delete}, class: 'button button-light button-small' %>
       <% else %>
         <%# Если нету — ссылки на регистрацию и логин %>
-        <%= link_to 'Зарегистрироваться', sign_up_path, class: 'button button-light button-small' %>
-        <%= link_to 'Войти', log_in_path, class: 'button button-light button-small' %>
+        <%= link_to 'Зарегистрироваться', new_user_path, class: 'button button-light button-small' %>
+        <%= link_to 'Войти', new_session_path, class: 'button button-light button-small' %>
       <% end %>
     </div>
   </div>
