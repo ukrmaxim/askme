@@ -6,6 +6,10 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.author = current_user
 
+    unless verify_recaptcha?(params[:recaptcha_token], 'question')
+      return redirect_to user_path(@question.user), notice: t('recaptcha.errors.verification_failed')
+    end
+
     if @question.save
       redirect_to user_path(@question.user), notice: t('controllers.questions.created')
     else

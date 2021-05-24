@@ -53,7 +53,7 @@ en:
       verification_failed: reCAPTCHA was incorrect, please try again.
       recaptcha_unreachable: reCAPTCHA verification server error, please try again.
 
-  edit_profile: My profile
+  edit_profile: Profile settings
   access_denied: Access is denied!
   log_out: Log out
   log_in: Log in

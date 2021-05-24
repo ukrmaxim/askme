@@ -54,10 +54,10 @@ ru:
 
   recaptcha:
     errors:
-      verification_failed: Не корректная reCAPTCHA, попробуйте еще раз.
+      verification_failed: Верификация reCAPTCHA не пройдена! Вы не можете задавать вопросы.
       recaptcha_unreachable: Ошибка сервера проверки reCAPTCHA, попробуйте еще раз.
 
-  edit_profile: Мой профиль
+  edit_profile: Настройки профиля
   access_denied: Доступ запрещен!
   log_out: Выйти
   log_in: Войти

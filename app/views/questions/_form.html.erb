@@ -1,5 +1,9 @@
 <%# Форма для создания/правки вопроса %>
 <div class="form">
+  <%= content_for :recaptcha_js do %>
+    <%= include_recaptcha_js %>
+  <% end %>
+
   <%# Форма для объекта @question %>
   <%= form_for(question) do |f| %>
     <% if question.errors.any? %>
@@ -33,5 +37,6 @@
       или
       <%= link_to t('back'), user_path(question.user), class: 'button button-dark button-small' %>
     </div>
+    <%= recaptcha_execute('question') %>
   <% end %>
 </div>
