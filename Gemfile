@@ -15,10 +15,9 @@ gem 'webpacker', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 # Centralization of locale data collection for Ruby on Rails
 gem 'rails-i18n', '~> 6.0.0' # For 6.0.0 or higher
-
 gem 'uglifier'
-
 gem 'rails_12factor'
+gem 'recaptcha', '~> 5.8'
 
 group :development do
   # Use sqlite3 as the database for Active Record
@@ -32,6 +31,7 @@ end
 
 group :development, :test do
   gem 'pry-rails'
+  gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
 end
 
 group :production do

@@ -4,18 +4,68 @@ en:
     one: '%{count} question'
     other: '%{count} questions'
 
-
   given:
-    one: 'given'
-    other: 'given'
+    one: given
+    other: given
 
   activerecord:
+    models:
+      user: User
+      question: Question
+      hashtag: Hashtag
     attributes:
       user:
-        avatar_url: Avatar_URL
+        avatar_url: Avatar URL
         background: Background color
         email: Login (e-mail)
         name: Name
         password: Password
         password_confirmation: Confirm password
         username: Nickname
+      question:
+        text: Question
+        answer: Answer
+      session:
+        email: Login (e-mail)
+        password: Password
+
+  controllers:
+    questions:
+      created: Question asked
+      updated: Question updated
+      destroyed: Question deleted
+    sessions:
+      created: You have successfully logged in
+      failed: Incorrect email or password
+      destroyed: Come back sooner!
+    users:
+      already_log_in: You are already logged in!
+      created: Registration successful
+      updated: Profile updated
+      destroyed: User deleted!
+
+  app:
+    name: Ask Me
+    company: A world of questions and answers
+
+  recaptcha:
+    errors:
+      verification_failed: reCAPTCHA was incorrect, please try again.
+      recaptcha_unreachable: reCAPTCHA verification server error, please try again.
+
+  edit_profile: My profile
+  access_denied: Access is denied!
+  log_out: Log out
+  log_in: Log in
+  sign_in: Sign in
+  save: Save
+  save_profile: Save profile
+  del_profile: Delete profile
+  back: Back
+  del_question_confirm: Delete the question exactly?
+  del_profile_confirm: Delete the profile exactly?
+  new_pass_info: To change your password, enter your new password!
+  our_users: Our users
+  ask_question: Ask question
+  question_for: Your question for @
+  join_us: Join us!

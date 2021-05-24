@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <title>AskMe</title>
+  <title><%= t('app.name') %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <%= csrf_meta_tags %>
@@ -17,7 +17,7 @@
   <div class="container">
     <div class="header-logo">
       <%# Ссылка на главную страницу сайта (root_path) %>
-      <h1 class="header-title"><%= link_to "AskMe", root_path %></h1>
+      <h1 class="header-title"><%= link_to t('app.name'), root_path %></h1>
     </div>
     <%# Выводим в хэдере информацию для логина/авторизации/регистрации %>
     <div class="header-nav">
@@ -25,11 +25,11 @@
       <% if current_user %>
         <%# Даем ссылки на его профиль, на log out и на удаление профиля %>
         <%= link_to "@#{current_user.username}", user_path(current_user), class: 'button button-light button-small' %> |
-        <%= link_to 'Выйти', session_path, data: {method: :delete}, class: 'button button-light button-small' %>
+        <%= link_to t('log_out'), session_path, data: {method: :delete}, class: 'button button-light button-small' %>
       <% else %>
         <%# Если нету — ссылки на регистрацию и логин %>
-        <%= link_to 'Зарегистрироваться', new_user_path, class: 'button button-light button-small' %>
-        <%= link_to 'Войти', new_session_path, class: 'button button-light button-small' %>
+        <%= link_to t('sign_in'), new_user_path, class: 'button button-light button-small' %>
+        <%= link_to t('log_in'), new_session_path, class: 'button button-light button-small' %>
       <% end %>
     </div>
   </div>

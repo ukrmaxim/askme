@@ -6,7 +6,7 @@ class User < ApplicationRecord
   USERNAME_REGEXP = /\A\w+\z/
   USEREMAIL_REGEXP = /\A[\w.]+@[a-zа-я\d]+\.[a-zа-я]+\z/
   PROFILEBG_REGEXP = /\A#\h{6}\z/
-  AVATARURL_REGEXP = /\A(http|https|www)+:\/\/[a-zа-я\d]+\.[a-zа-я]+\z/
+  AVATARURL_REGEXP = /\A(http|https|www)+:\/\/[a-z-а-я\d]+\.[a-zа-я]+\/+/
 
   attr_accessor :password
 

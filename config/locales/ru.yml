@@ -7,18 +7,69 @@ ru:
     other: '%{count} вопросы'
 
   given:
-    one: 'задан'
-    few: 'задано'
-    many: 'задано'
-    other: 'задано'
+    one: задан
+    few: задано
+    many: задано
+    other: задано
 
   activerecord:
+    models:
+      user: Пользователь
+      question: Вопрос
+      hashtag: Хэштег
     attributes:
       user:
-        avatar_url: URL вашей аватарки
+        avatar_url: URL аватарки
         background: Цвет фона
         email: Логин (e-mail)
         name: Имя
         password: Пароль
         password_confirmation: Пароль ещё раз
         username: Никнейм
+      question:
+        text: Вопрос
+        answer: Ответ
+      session:
+        email: Логин (e-mail)
+        password: Пароль
+
+  controllers:
+    questions:
+      created: Вопрос задан
+      updated: Вопрос обновлен
+      destroyed: Вопрос удален
+    sessions:
+      created: Вы успешно авторизовались
+      failed: Неправильный email или пароль
+      destroyed: Возвращайтесь скорее!
+    users:
+      already_log_in: Вы уже авторизованы!
+      created: Регистрация успешна
+      updated: Данные профиля обновлены
+      destroyed: Пользователь удален!
+
+  app:
+    name: Спроси меня
+    company: Мир вопросов и ответов
+
+  recaptcha:
+    errors:
+      verification_failed: Не корректная reCAPTCHA, попробуйте еще раз.
+      recaptcha_unreachable: Ошибка сервера проверки reCAPTCHA, попробуйте еще раз.
+
+  edit_profile: Мой профиль
+  access_denied: Доступ запрещен!
+  log_out: Выйти
+  log_in: Войти
+  sign_in: Зарегистрироваться
+  save: Сохранить
+  save_profile: Сохранить профиль
+  del_profile: Удалить профиль
+  back: Назад
+  del_question_confirm: Точно удалить вопрос?
+  del_profile_confirm: Точно удалить профиль?
+  new_pass_info: Для смены пароля, введите новый пароль!
+  our_users: Наши пользователи
+  ask_question: Задать вопрос
+  question_for: Ваш вопрос для @
+  join_us: Присоединяйся к нам!

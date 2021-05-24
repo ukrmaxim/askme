@@ -3,7 +3,7 @@
 <%# что позволяет в подобных случаях использовать один и тот же паршиал form %>
 <%# в обоих страницах. %>
 <div class="container content-wrapper buffer-both">
-  <h1 class="title-medium">Присоединяйся к нам!</h1>
+  <h1 class="title-medium"><%= t('join_us') %></h1>
 
   <div class="column-1-2">
     <%# С помощью специального хелпера form_for мы делаем тег <form ...> %>
@@ -26,7 +26,7 @@
       <%# С помощью методов label и text_field у объекта f мы создаем теги %>
       <%# <label ... > и <input type="text" ... > с нужными атрибуами %>
       <div class="form-field">
-        <%= f.label :email, 'Логин (e-mail)', class: 'form-label' %>
+        <%= f.label :email, class: 'form-label' %>
         <%= f.email_field :email, class: 'form-text-field' %>
       </div>
 
@@ -51,7 +51,7 @@
       </div>
 
       <div class="form-action">
-        <%= f.submit 'Зарегистрироваться', class: 'button button-small button-dark' %>
+        <%= f.submit t('sign_in'), class: 'button button-small button-dark' %>
       </div>
     <% end %>
   </div>

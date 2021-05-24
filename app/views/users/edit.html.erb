@@ -1,6 +1,6 @@
 <%# Страница редактирования пользователя %>
 <div class="container content-wrapper buffer-both">
-  <h1 class="title-medium">Редактирование профиля</h1>
+  <h1 class="title-medium"><%= t('edit_profile') %></h1>
 
   <div class="column-1-2">
     <%# С помощью специального хелпера form_for мы делаем тег <form ...> %>
@@ -48,7 +48,7 @@
       </div>
 
       <div class="buffer-top-large buffer-bottom">
-        Для смены пароля, введите новый пароль!
+        <%= t('new_pass_info') %>
       </div>
 
       <div class="form-field">
@@ -62,11 +62,11 @@
       </div>
 
       <div class="form-action buffer-top">
-        <%= f.submit 'Сохранить профиль', class: 'button button-dark button-small' %>
-        <%= link_to 'Удалить профиль', user_path(@user),
+        <%= f.submit t('save_profile'), class: 'button button-dark button-small' %>
+        <%= link_to t('del_profile'), user_path(@user),
                     class: 'button button-red button-small',
                     method: :delete, data: {
-            confirm: 'Точно удалить профиль?' } %>
+            confirm: t('del_profile_confirm') } %>
       </div>
     <% end %>
   </div>

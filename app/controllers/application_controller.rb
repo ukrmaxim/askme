@@ -20,6 +20,6 @@ class ApplicationController < ActionController::Base
   # Метод, который редиректит посетителя на главную с предупреждением о
   # нарушении доступа. Мы будем использовать этот метод, когда надо запретить пользователю что-то.
   def reject_user
-    redirect_to root_path, alert: 'Доступ запрещен!'
+    redirect_to root_path, alert: t('access_denied')
   end
 end
