@@ -68,6 +68,10 @@
                     method: :delete, data: {
             confirm: t('del_profile_confirm') } %>
       </div>
+
+      <div class="form-action buffer-top">
+      <%= link_to t('back'), user_path(@user), class: 'button button-dark button-small' %>
+      </div>
     <% end %>
   </div>
 </div>
