@@ -15,7 +15,7 @@ class Question < ApplicationRecord
   private
 
   def find_and_save_hashtags
-    "#{text} #{answer}".scan(Hashtag::TAG_STRING_REGEXP).map(&:downcase).uniq.each do |hashtag|
+    "#{text} #{answer}".downcase.scan(Hashtag::TAG_STRING_REGEXP).uniq.each do |hashtag|
       new_hashtag = Hashtag.find_or_create_by(name: hashtag.delete("#"))
       HashtagQuestion.create!(question: self, hashtag: new_hashtag)
     end
