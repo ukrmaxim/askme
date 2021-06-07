@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  before_action :load_user, except: [:index, :create, :new, :destroy]
-  before_action :authorize_user, except: [:index, :new, :create, :show, :destroy]
+  before_action :load_user, except: %i[index create new destroy]
+  before_action :authorize_user, except: %i[index new create show destroy]
 
   def index
     @users = User.all
+    @hashtags = Hashtag.with_questions
   end
 
   def new
@@ -41,8 +42,7 @@ class UsersController < ApplicationController
     @answered_count = @questions.answered.count
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)

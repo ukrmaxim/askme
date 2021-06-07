@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :load_question, only: [:destroy, :edit, :update]
+  before_action :load_question, only: %i[destroy edit update]
   before_action :authorize_user, except: [:create]
 
   def create
@@ -17,8 +17,7 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @question.update(question_params)

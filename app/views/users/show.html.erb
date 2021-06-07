@@ -49,46 +49,53 @@
   </div>
 </div>
 
+<% unless current_user == @user %>
 <%# Блок с формой для задавания пользователю вопроса %>
-<div class="user-question-form-div column-1-4 column-1-4-right" id='ask-form'>
-  <div class="user-question-form buffer-both">
-    <div class="form">
-      <%= content_for :recaptcha_js do %>
-        <%= include_recaptcha_js %>
-      <% end %>
-      <%# Мы используем хелпер form_for, принимающий на вход блок erb-кода, %>
-      <%# в котором доступна переменная f, содержащая так называемый form %>
-      <%# builder, с помощью которого можно делать поля формы для нового %>
-      <%# вопроса. %>
-      <%= form_for @new_question do |f| %>
-        <%# С помощью объекта для создания полей формы, связанной с моделью %>
-        <%# @new_question Мы создаем инпуты с нужными полями для формы, %>
-        <%# значения будут подставлены rails автоматически. %>
-        <%= f.hidden_field :user_id %>
+  <div class="user-question-form-div column-1-4 column-1-4-right" id='ask-form'>
+    <div class="user-question-form buffer-both">
+      <div class="form">
+        <%= content_for :recaptcha_js do %>
+          <%= include_recaptcha_js %>
+        <% end %>
+        <%# Мы используем хелпер form_for, принимающий на вход блок erb-кода, %>
+        <%# в котором доступна переменная f, содержащая так называемый form %>
+        <%# builder, с помощью которого можно делать поля формы для нового %>
+        <%# вопроса. %>
+        <%= form_for @new_question do |f| %>
+          <%# С помощью объекта для создания полей формы, связанной с моделью %>
+          <%# @new_question Мы создаем инпуты с нужными полями для формы, %>
+          <%# значения будут подставлены rails автоматически. %>
+          <%= f.hidden_field :user_id %>
 
-        <div class="form-field">
-          <%= f.label t('question_for')+"#{@user.username}", class: 'form-label' %>
-          <%= f.text_area :text, class: 'form-textarea' %>
-        </div>
-        <div class="form-action">
-          <%= submit_tag t('ask_question'), class: 'button button-small button-dark' %>
-        </div>
-        <%= recaptcha_execute('question') %>
-      <% end %>
+          <div class="form-field">
+            <%= f.label t('question_for') + "#{@user.username}", class: 'form-label' %>
+            <%= f.text_area :text, class: 'form-textarea' %>
+          </div>
+          <div class="form-action">
+            <%= submit_tag t('ask_question'), class: 'button button-small button-dark' %>
+          </div>
+          <%= recaptcha_execute('question') %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <%# Блок со списком вопросов к пользователю %>
-<div class="column-3-4">
-  <div class="user-questions buffer-both">
-    <%# Обратите внимание, как мы делаем цикл по всем вопросам, точно %>
-    <%# также, как мы делали циклы в ruby %>
-    <% @questions.each do |question| %>
-      <%# Мы рисуем здесь для кажого вопроса в списке вопросов фрагмент %>
-      <%# (паршал), передавая в него текущий вопрос. Это очень похоже на %>
-      <%# вызов метода в ruby %>
-      <%= render partial: 'questions/question', object: question %>
-    <% end %>
-  </div>
+<% if current_user == @user %>
+  <div class="container">
+<% else %>
+  <div class="column-3-4">
+<% end %>
+<div class="user-questions buffer-both">
+  <%# Обратите внимание, как мы делаем цикл по всем вопросам, точно %>
+  <%# также, как мы делали циклы в ruby %>
+  <% @questions.each do |question| %>
+    <%# Мы рисуем здесь для кажого вопроса в списке вопросов фрагмент %>
+    <%# (паршал), передавая в него текущий вопрос. Это очень похоже на %>
+    <%# вызов метода в ruby %>
+    <%= render partial: 'questions/question', object: question %>
+  <% end %>
+</div>
+</div>
 </div>

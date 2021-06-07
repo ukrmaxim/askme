@@ -19,3 +19,12 @@
     </div>
   <% end %>
 </div>
+
+<% unless @hashtags.count.zero? %>
+  <div class="content-wrapper buffer-both text-center">
+    <h1 class="title-medium"><%= t('hashtags') %></h1>
+    <% @hashtags.each do |hashtag| %>
+      <%= render partial: 'hashtags/hashtag', object: hashtag %>
+    <% end %>
+  </div>
+<% end %>
