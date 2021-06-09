@@ -1,5 +1,5 @@
 class HashtagsController < ApplicationController
   def show
-    @hashtag = Hashtag.find_by!(id: params[:id])
+    @hashtag = Hashtag.find_by!(name: params[:name])
   end
 end
