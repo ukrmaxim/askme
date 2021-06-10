@@ -7,8 +7,4 @@ class Hashtag < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30 }
 
   scope :with_questions, -> { joins(:questions).distinct }
-
-  def to_param
-    name
-  end
 end
