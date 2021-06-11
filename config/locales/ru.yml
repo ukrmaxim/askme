@@ -74,4 +74,5 @@ ru:
   question_for: Ваш вопрос для @
   join_us: Присоединяйся к нам!
   questions_with_hashtag: 'Вопросы с хештегом #%{name}'
-  hashtags: Хештеги
+  hashtags: хештеги
+  question_from: 'вопрос от:'

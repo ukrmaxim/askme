@@ -70,4 +70,5 @@ en:
   question_for: Your question for @
   join_us: Join us!
   questions_with_hashtag: 'Question with hashtags #%{name}'
-  hashtags: Hashtags
+  hashtags: hashtags
+  question_from: 'question from:'

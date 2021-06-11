@@ -9,6 +9,11 @@
   border: none;
 }
 
+.button:hover {
+  color: #00948a;
+  opacity: 1;
+}
+
 .button-dark {
   background: #2e2f41;
   color: #fff;
@@ -28,6 +33,11 @@
 .button-light {
   background: #00948a;
   color: #fff;
+}
+
+.button-light:hover {
+  color: #2e2f41;
+  opacity: 1;
 }
 
 .button-small {

@@ -1,8 +1,6 @@
 <div class="content-wrapper buffer-both">
-  <div class="buffer-both">
-    <h1 class="title-medium"><%= t(:questions_with_hashtag, name: @hashtag.name) %></h1>
-  </div>
-  <div class="user-questions buffer-both">
+  <h1 class="title-medium text-center"><%= t(:questions_with_hashtag, name: @hashtag.name) %></h1>
+  <div class="user-questions">
     <%= render @hashtag.questions %>
   </div>
 </div>
