@@ -6,32 +6,19 @@
   <div class="question-content">
     <%# Текст вопроса %>
     <div class="question-text text-lead">
-      <% if question.hashtags.present? %>
-        <%= raw question.text.gsub(Hashtag::TAG_STRING_REGEXP) {
-          |hashtag| link_to hashtag, hashtag_path(hashtag.downcase.delete("#"))
-        } %>
-      <% else %>
-        <%= question.text %>
-      <% end %>
+      <%== text_with_hashtag_links(question.text) %>
     </div>
-
+    <hr>
     <%# Текст ответа, если он есть %>
     <div class="question-answer text-lead">
-      <% if question.answer.present? %>
-        <% if question.hashtags.present? %>
-          > <%= raw question.answer.gsub(Hashtag::TAG_STRING_REGEXP) {
-            |hashtag| link_to hashtag, hashtag_path(hashtag.downcase.delete("#"))
-          } %>
-        <% else %>
-          > <%= question.answer %>
-        <% end %>
-      <% end %>
+      <%# if question.answer.present? %>
+        <%== text_with_hashtag_links(question.answer) %>
+      <%# end %>
     </div>
     <%# Дата создания вопроса (отформатированная) %>
     <div class="question-date">
       <%= l(question.created_at, format: :short) %>
     </div>
-
     <%# Автор вопроса %>
     <div class="question-author">
       <% if question.author.nil? %>
