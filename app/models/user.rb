@@ -6,7 +6,7 @@ class User < ApplicationRecord
   USERNAME_REGEXP = /\A\w+\z/
   USEREMAIL_REGEXP = /\A[\w.]+@[a-zа-я\d]+\.[a-zа-я]+\z/
   PROFILEBG_REGEXP = /\A#\h{6}\z/
-  AVATARURL_REGEXP = /\A(http|https|www)+:\/\/[a-z\-а-я\d]+\.[a-zа-я]+\/+/
+  AVATARURL_REGEXP = %r{\A(http|https|www)+://[a-z\-а-я\d]+\.[a-zа-я]+/+}
 
   attr_accessor :password
 
@@ -16,15 +16,15 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: USEREMAIL_REGEXP }
   validates :password, confirmation: true
   validates :password_confirmation, presence: true, on: :create
-  validates :background, format: {with: PROFILEBG_REGEXP}
-  validates :avatar_url, allow_blank: true, format: {with: AVATARURL_REGEXP}
+  validates :background, format: { with: PROFILEBG_REGEXP }
+  validates :avatar_url, allow_blank: true, format: { with: AVATARURL_REGEXP }
 
   before_validation :normalize_letters
   before_save :encrypt_password
 
   # Служебный метод, преобразующий бинарную строку в шестнадцатиричный формат, для удобства хранения.
   def self.hash_to_string(password_hash)
-    password_hash.unpack('H*')[0]
+    password_hash.unpack1('H*')
   end
 
   # Основной метод для аутентификации юзера (логина). Проверяет email и пароль,
@@ -54,7 +54,7 @@ class User < ApplicationRecord
     if password.present?
       # Создаем т.н. «соль» — случайная строка, усложняющая задачу хакерам по
       # взлому пароля, даже если у них окажется наша БД.
-      #У каждого юзера своя «соль», это значит, что если подобрать перебором пароль
+      # У каждого юзера своя «соль», это значит, что если подобрать перебором пароль
       # одного юзера, нельзя разгадать, по какому принципу
       # зашифрованы пароли остальных пользователей
       self.password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))

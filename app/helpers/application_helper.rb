@@ -31,7 +31,7 @@ module ApplicationHelper
 
   def text_with_hashtag_links(string)
     string&.gsub(Hashtag::TAG_STRING_REGEXP) do |hashtag|
-      link_to hashtag, hashtag_path(hashtag.downcase.delete("#"))
+      link_to hashtag, hashtag_path(hashtag.downcase.delete('#'))
     end
   end
 end

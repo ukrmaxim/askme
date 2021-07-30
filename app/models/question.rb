@@ -15,7 +15,7 @@ class Question < ApplicationRecord
 
   def find_save_update_hashtags
     self.hashtags = "#{text} #{answer}".downcase.scan(Hashtag::TAG_STRING_REGEXP).uniq.map do |hashtag|
-      Hashtag.find_or_create_by(name: hashtag.delete("#"))
+      Hashtag.find_or_create_by(name: hashtag.delete('#'))
     end
   end
 end

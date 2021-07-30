@@ -1,24 +1,18 @@
-# README
+# AskMe
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A social network app in which it is possible to register, ask questions to users and answer questions. Anonymous
+questions are also available.
 
-Things you may want to cover:
+The user can customize his profile: change the background color, choose an avatar, change the password.
+Security from spam and bots is provided by the recaptcha v.3
+To simplify the work of users with the application, a hashtag service is used.
 
-* Ruby version
+* Ruby and Ruby on Rails version:
+  Ruby 3.0.0
+  Rails  6.1.3
 
-* System dependencies
-
-* Configuration
+* Deploy app
 
 * Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* How to run app
