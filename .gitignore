@@ -3,6 +3,7 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-*
+/db/*.db
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -25,7 +26,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/.idea
 /public/packs
 /public/packs-test
 /node_modules
