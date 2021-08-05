@@ -34,6 +34,10 @@ rails db:schema:load
 Register reCAPTCHA v3 keys [here](https://g.co/recaptcha/v3).
 Create `.env` file and add the received reCAPTCHA v3 keys to it (see `.env.example` for this)
 
+4. Database in production environment
+
+In `.env` file specify the data to connect to your database (see `.env.example` for this)
+
 ## How to run app
 
 To start the Rails server, type
