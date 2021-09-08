@@ -5,7 +5,6 @@ ruby '3.0.0'
 
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.3'
-gem 'rails_12factor'
 gem 'rails-i18n', '~> 6.0.0' # For 6.0.0 or higher
 gem 'recaptcha', '~> 5.8'
 gem 'sass-rails', '>= 6'
