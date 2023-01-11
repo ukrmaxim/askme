@@ -58,10 +58,11 @@ ru:
       recaptcha_unreachable: Ошибка сервера проверки reCAPTCHA, попробуйте еще раз.
 
   edit_profile: Настройки профиля
+  edit_question: Редактирование вопроса
   access_denied: Доступ запрещен!
-  log_out: Выйти
-  log_in: Войти
-  sign_in: Зарегистрироваться
+  sign_out: Выйти
+  sign_in: Войти
+  sign_up: Регистрация
   save: Сохранить
   save_profile: Сохранить профиль
   del_profile: Удалить профиль
@@ -75,4 +76,7 @@ ru:
   join_us: Присоединяйся к нам!
   questions_with_hashtag: 'Вопросы с хештегом #%{name}'
   hashtags: хештеги
-  question_from: 'вопрос от:'
+  question_from: 'вопрос от: '
+  question_to: 'для: '
+  answered_to: отвечено на
+  not_answered: не отвечено на

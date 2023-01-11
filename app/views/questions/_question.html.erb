@@ -1,41 +1,29 @@
-<%# Это фрагмет (паршал, partial) для вывода вопроса. В нем определена %>
-<%# локальная переменная question, в которую при вызове будет передан %>
-<%# как в метод ruby объект после ключа (object: @question) %>
-
 <div class="question">
   <div class="question-content">
-    <%# Текст вопроса %>
     <div class="question-text text-lead">
       <%== text_with_hashtag_links(question.text) %>
     </div>
     <hr>
-    <%# Текст ответа, если он есть %>
     <div class="question-answer text-lead">
-      <%# if question.answer.present? %>
-        <%== text_with_hashtag_links(question.answer) %>
-      <%# end %>
+      <%== text_with_hashtag_links(question.answer) %>
     </div>
-    <%# Дата создания вопроса (отформатированная) %>
     <div class="question-date">
       <%= l(question.created_at, format: :short) %>
     </div>
-    <%# Автор вопроса %>
     <div class="question-author">
       <% if question.author.nil? %>
-        <%= t('question_from') %> @anonymous
+        <%= t('question_from') %>@anonymous
       <% else %>
         <%= t('question_from') %><%= link_to "@#{question.author.username}", user_path(question.author) %>
+      <% end %>
+      <% if params[:name].present? %>
+        <%= t('question_to') %><%= link_to "@#{question.user.username}", user_path(question.user) %>
       <% end %>
     </div>
   </div>
 
-  <%# Если адресат вопроса — текущий пользователь, он может редактировать вопрос %>
-  <%# и отвечать на него %>
   <% if question.user == current_user %>
-    <%# Определяем какая будет иконка, если у вопроса нет ответа, то иконка %>
-    <%# ответа на письмо, иначе — карандашик %>
     <% edit_icon = question.answer.blank? ? 'reply' : 'pencil' %>
-
     <div class="question-actions">
       <%= link_to fa_icon(edit_icon), edit_question_path(question) %>
       <%= link_to fa_icon('trash-o'), question_path(question),

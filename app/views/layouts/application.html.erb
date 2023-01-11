@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <title><%= t('app.name') %></title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,26 +11,19 @@
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= yield :recaptcha_js %>
 </head>
-
 <body>
-
 <div class="header">
   <div class="container">
     <div class="header-logo">
-      <%# Ссылка на главную страницу сайта (root_path) %>
       <h1 class="header-title"><%= link_to t('app.name'), root_path %></h1>
     </div>
-    <%# Выводим в хэдере информацию для логина/авторизации/регистрации %>
     <div class="header-nav">
-      <%# Если есть текущий юзер (значит он залогинен) %>
       <% if current_user %>
-        <%# Даем ссылки на его профиль, на log out и на удаление профиля %>
         <%= link_to "@#{current_user.username}", user_path(current_user), class: 'button button-light button-small' %> |
-        <%= link_to t('log_out'), session_path, data: {method: :delete}, class: 'button button-light button-small' %>
+        <%= link_to t('sign_out'), session_path, data: { method: :delete }, class: 'button button-light button-small' %>
       <% else %>
-        <%# Если нету — ссылки на регистрацию и логин %>
-        <%= link_to t('sign_in'), new_user_path, class: 'button button-light button-small' %>
-        <%= link_to t('log_in'), new_session_path, class: 'button button-light button-small' %>
+        <%= link_to t('sign_up'), new_user_path, class: 'button button-light button-small' %>
+        <%= link_to t('sign_in'), new_session_path, class: 'button button-light button-small' %>
       <% end %>
     </div>
   </div>
@@ -45,11 +38,8 @@
         <% end %>
       </div>
     <% end %>
-    <%# Вместо волшебной конструкции yield рельсы подставят то, что срендерит %>
-    <%# шаблон для нужной нам страницы, например, users/show %>
     <%= yield %>
   </div>
 </div>
-
 </body>
 </html>

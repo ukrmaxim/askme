@@ -54,10 +54,11 @@ en:
       recaptcha_unreachable: reCAPTCHA verification server error, please try again.
 
   edit_profile: Profile settings
+  edit_question: Edit question
   access_denied: Access is denied!
-  log_out: Log out
-  log_in: Log in
+  sign_out: Sign out
   sign_in: Sign in
+  sign_up: Sign up
   save: Save
   save_profile: Save profile
   del_profile: Delete profile
@@ -69,6 +70,9 @@ en:
   ask_question: Ask question
   question_for: Your question for @
   join_us: Join us!
-  questions_with_hashtag: 'Question with hashtags #%{name}'
+  questions_with_hashtag: 'Questions with hashtag #%{name}'
   hashtags: hashtags
-  question_from: 'question from:'
+  question_from: 'question from: '
+  question_to: 'to: '
+  answered_to: answered to
+  not_answered: not answered

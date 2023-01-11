@@ -1,15 +1,8 @@
-<%# Страница редактирования пользователя %>
 <div class="container content-wrapper buffer-both">
   <h1 class="title-medium"><%= t('edit_profile') %></h1>
 
   <div class="column-1-2">
-    <%# С помощью специального хелпера form_for мы делаем тег <form ...> %>
-    <%# с нужными аттрибутами, после этого в переменной f будет специальный %>
-    <%# объект (form builder object), вызывая методы которого мы можем %>
-    <%# создавать теги для нужных нам полей формы. %>
     <%= form_with model: @user do |f| %>
-      <%# Вывод ошибок валидации пользователя, если есть. Ошибки содержатся %>
-      <%# в поле errors модели (в нашем случае @users). %>
       <% if @user.errors.any? %>
         <div class="form-errors">
           <ul>
@@ -20,8 +13,6 @@
         </div>
       <% end %>
 
-      <%# С помощью методов label и text_field у объекта f мы создаем теги %>
-      <%# <label ... > и <input type="text" ... > с нужными атрибуами %>
       <div class="form-field">
         <%= f.label :email, class: 'form-label' %>
         <%= f.email_field :email, class: 'form-text-field' %>

@@ -1,10 +1,8 @@
-<%# Страница с формой логина %>
 <div class="container content-wrapper buffer-both">
   <h1 class="title-medium"><%= t('log_in') %></h1>
 
   <div class="column-1-2">
     <div class="form">
-      <%# Рисуем форму, которая будет отправлена по адресу /sessions %>
       <%= form_tag session_path do %>
         <div class="form-field">
           <%= label_tag :email, t('activerecord.attributes.session.email'), class: 'form-label' %>
@@ -17,7 +15,7 @@
         </div>
 
         <div class="form-action">
-          <%= submit_tag t('log_in'), class: 'button button-dark button-small' %>
+          <%= submit_tag t('sign_in'), class: 'button button-dark button-small' %>
         </div>
       <% end %>
     </div>

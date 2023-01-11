@@ -1,9 +1,6 @@
-<%# Страница редактирования вопроса %>
 <div class="container content-wrapper buffer-both">
-  <h1 class="title-medium">Редактирование вопроса</h1>
-
+  <h1 class="title-medium"><%= t('edit_question') %></h1>
   <div class="column-1-2">
-    <%# Подключаем паршиал app/views/questions/_form.html.erb %>
     <%= render 'form', question: @question %>
   </div>
 </div>

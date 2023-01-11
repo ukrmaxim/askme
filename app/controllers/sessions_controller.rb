@@ -14,10 +14,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # Затираем в сесси значение ключа :user_id
     session[:user_id] = nil
 
-    # Редиректим пользователя на главную с сообщением
     redirect_to root_path, notice: t('controllers.sessions.destroyed')
   end
 end
