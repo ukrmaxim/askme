@@ -9,7 +9,7 @@ To simplify the work of users with the application, a hashtag service is used.
 
 ## Ruby and Ruby on Rails version
 
-- Ruby 3.0.0
+- Ruby 3.1.2
 
 - Rails  6.1.3
 
@@ -20,7 +20,7 @@ Note: all commands must be run from the command line/terminal, from the director
 1. Download or clone repository, then run bundler
 
 ```ruby
-bundle exec install
+bundle
 ```
 
 2. To create a database, run
